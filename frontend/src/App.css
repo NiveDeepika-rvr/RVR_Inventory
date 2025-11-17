@@ -1,0 +1,21 @@
+.sidebar-container {
+  background: #0051ff !important;
+  color: white;
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+
+  /* ===== CURVE MAGIC ===== */
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+
+
+}
+
+.logo-text {
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 20px;
+}
