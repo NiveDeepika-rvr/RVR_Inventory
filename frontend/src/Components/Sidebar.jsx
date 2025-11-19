@@ -1,59 +1,44 @@
-import React from "react";
-import { Layout, Menu } from "antd";
+import React, { useState } from "react";
+import { Layout } from "antd";
 import {
-    DashboardOutlined,
-    ShoppingCartOutlined,
-    BarChartOutlined,
-    AppstoreOutlined,
+    LoginOutlined,
     DatabaseOutlined,
-    GiftOutlined,
+    BarChartOutlined,
+    LogoutOutlined,
 } from "@ant-design/icons";
-
+import { Link, useLocation } from "react-router-dom";
+import "../App.css";
 const { Sider } = Layout;
 
-const Sidebar = ({ collapsed, onCollapse }) => {
+const Sidebar = () => {
+    const [selected, setSelected] = useState("home");
+
+    const menu = [
+        { key: "inward", label: "Inward", icon: <LoginOutlined />, path: "/inward" },
+
+    ];
+
     return (
-        <Sider
-            collapsible
-            collapsed={collapsed}
-            onCollapse={onCollapse}
-            width={240}
-            style={{
-                background: "#0051ff",
-                color: "#fff",
-                height: "100vh",
-                position: "fixed",
-                left: 0,
-                top: 0,
-            }}
-        >
-            <div
-                style={{
-                    height: 100,
-                    margin: 16,
-                    color: "#fff",
-                    fontSize: 22,
-                    fontWeight: "bold",
-                    textAlign: collapsed ? "center" : "left",
-                }}
-            >
-                {collapsed ? "eP" : "eProduct"}
+        <Sider width={220} className="custom-sider">
+
+
+            <div className="menu-list">
+                {menu.map((item) => (
+                    <Link to={item.path} key={item.key} className="menu-link">
+                        <div
+                            key={item.key}
+                            className={`menu-item ${selected === item.key ? "active" : ""
+                                }`}
+                            onClick={() => setSelected(item.key)}
+                        >
+                            <div className="menu-icon">{item.icon}</div>
+                            <span className="menu-label">{item.label}</span>
+                        </div>
+                    </Link>
+                ))}
             </div>
 
-            <Menu
-                theme="dark"
-                mode="inline"
-                style={{ background: "#0051ff" }}
-                defaultSelectedKeys={["1"]}
-                items={[
-                    { key: "1", icon: <DashboardOutlined />, label: "Dashboard" },
-                    { key: "2", icon: <ShoppingCartOutlined />, label: "Order" },
-                    { key: "3", icon: <BarChartOutlined />, label: "Statistic" },
-                    { key: "4", icon: <AppstoreOutlined />, label: "Product" },
-                    { key: "5", icon: <DatabaseOutlined />, label: "Stock" },
-                    { key: "6", icon: <GiftOutlined />, label: "Offer" },
-                ]}
-            />
+
         </Sider>
     );
 };

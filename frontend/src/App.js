@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import MainLayout from './layouts/MainLayout';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Inward from './Components/Inward';
+
 
 function App() {
   return (
@@ -15,6 +17,9 @@ function App() {
             <MainLayout />
     
         }>
+          
+          <Route path="inward" element={<Inward/>}/>
+          
         
         </Route>
 

@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Layout } from "antd";
 import Sidebar from "../Components/Sidebar";
 import Navbar from "../Components/Navbar";
+import { useLocation, useNavigate, Outlet } from "react-router-dom";
 
-const { Content } = Layout;
+const { Content, Footer } = Layout;
 
-const MainLayout = ({ children }) => {
+const MainLayout = () => {
     const [collapsed, setCollapsed] = useState(false);
 
     return (
@@ -14,15 +15,17 @@ const MainLayout = ({ children }) => {
 
             <Navbar />
 
-            <Content
-                style={{
-                    marginLeft: collapsed ? 80 : 240,
-                    marginTop: 80,
-                    padding: 20,
-                }}
-            >
-                {children}
-            </Content>
+
+            <Layout>
+                <Content className="main-content">
+
+                    <Outlet />
+                </Content>
+
+                <Footer className="main-footer">
+                    <span className="footer-text">© Developed by RVR PRIVATE LIMITED</span>
+                </Footer>
+            </Layout>
         </Layout>
     );
 };
